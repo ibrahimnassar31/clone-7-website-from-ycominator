@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+@import "tailwindcss";
+@import "tw-animate-css";
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* Shadcn/UI Colors - Dark Theme */
+  --color-background: #0A0A0A;
+  --color-foreground: #FFFFFF;
+
+  --color-card: #1A1A1A;
+  --color-card-foreground: #FFFFFF;
+
+  --color-popover: #1A1A1A;
+  --color-popover-foreground: #FFFFFF;
+
+  --color-primary: #FFFFFF; /* Used for primary text on dark backgrounds */
+  --color-primary-foreground: #0A0A0A; /* Used for text on primary elements (e.g., white buttons) */
+
+  --color-secondary: #333333; /* Used for secondary backgrounds like borders or muted elements */
+  --color-secondary-foreground: #FFFFFF;
+
+  --color-muted: #333333;
+  --color-muted-foreground: #A0A0A0;
+
+  --color-accent: #1A1A1A; /* Used for accent backgrounds, similar to card */
+  --color-accent-foreground: #FFFFFF;
+
+  --color-destructive: #FF6347; /* Using Primary Orange from design system for destructive */
+  --color-destructive-foreground: #FFFFFF;
+
+  --color-border: #333333;
+  --color-input: #333333;
+  --color-ring: #40E0D0; /* Using Primary Teal for ring */
+
+  /* Chart colors - using geometric element colors */
+  --color-chart-1: #4169E1; /* Primary Blue */
+  --color-chart-2: #40E0D0; /* Primary Teal */
+  --color-chart-3: #8A2BE2; /* Primary Purple */
+  --color-chart-4: #FF6347; /* Primary Orange */
+  --color-chart-5: #D2691E; /* Accent Orange */
+
+  /* Custom Design System Colors */
+  --color-background-primary: #0A0A0A;
+  --color-background-secondary: #1A1A1A;
+  --color-accent-orange: #D2691E;
+  --color-primary-teal: #40E0D0;
+  --color-primary-blue: #4169E1;
+  --color-primary-purple: #8A2BE2;
+  --color-primary-orange: #FF6347;
+  --color-text-white: #FFFFFF;
+  --color-text-gray: #A0A0A0;
+  --color-border-gray: #333333;
+  --color-chart-background: #2A2A2A;
+
+  /* Typography */
+  --font-display: "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  /* Shadcn/UI Radii */
+  --radius-lg: 1.5rem; /* 24px for larger containers */
+  --radius-md: 1rem; /* 16px for cards */
+  --radius-sm: 0.5rem; /* 8px for buttons */
+
+  /* Shadcn/UI Animations */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-border);
+  }
+}
+
+@layer utilities {
+  body {
+    font-family: var(--font-body);
+  }
+}
+
+@layer base {
+  :root {
+    /* Shadcn/UI CSS Variables - Dark Theme */
+    --background: var(--color-background);
+    --foreground: var(--color-foreground);
+    --card: var(--color-card);
+    --card-foreground: var(--color-card-foreground);
+    --popover: var(--color-popover);
+    --popover-foreground: var(--color-popover-foreground);
+    --primary: var(--color-primary);
+    --primary-foreground: var(--color-primary-foreground);
+    --secondary: var(--color-secondary);
+    --secondary-foreground: var(--color-secondary-foreground);
+    --muted: var(--color-muted);
+    --muted-foreground: var(--color-muted-foreground);
+    --accent: var(--color-accent);
+    --accent-foreground: var(--color-accent-foreground);
+    --destructive: var(--color-destructive);
+    --destructive-foreground: var(--color-destructive-foreground);
+    --border: var(--color-border);
+    --input: var(--color-input);
+    --ring: var(--color-ring);
+    --chart-1: var(--color-chart-1);
+    --chart-2: var(--color-chart-2);
+    --chart-3: var(--color-chart-3);
+    --chart-4: var(--color-chart-4);
+    --chart-5: var(--color-chart-5);
+
+    --radius: var(--radius-md); /* Default radius for shadcn components */
+
+    /* Custom Design System CSS Variables */
+    --background-primary: var(--color-background-primary);
+    --background-secondary: var(--color-background-secondary);
+    --accent-orange: var(--color-accent-orange);
+    --primary-teal: var(--color-primary-teal);
+    --primary-blue: var(--color-primary-blue);
+    --primary-purple: var(--color-primary-purple);
+    --primary-orange: var(--color-primary-orange);
+    --text-white: var(--color-text-white);
+    --text-gray: var(--color-text-gray);
+    --border-gray: var(--color-border-gray);
+    --chart-background: var(--color-chart-background);
+  }
+
+  /* Base HTML Tag Styles */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: var(--text-white);
+    line-height: 1.1;
+  }
+
+  h1 {
+    font-size: 64px;
+    font-weight: 500;
+  }
+
+  h2 {
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-size: 32px;
+    font-weight: 500;
+  }
+
+  p {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text-gray);
+  }
+
+  a {
+    color: var(--primary-teal);
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Font Classes */
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-body {
+    font-family: var(--font-body);
+  }
+
+  .text-hero-heading {
+    font-size: 64px;
+    font-weight: 500;
+    line-height: 1.1;
+  }
+
+  .text-section-heading {
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  .text-subsection-heading {
+    font-size: 32px;
+    font-weight: 500;
+  }
+
+  .text-body {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .text-small {
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .text-button {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .text-navigation {
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  /* Container Class Definition */
+  .container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
+
+/* Hide Next.js error overlay portal */
+nextjs-portal {
+  display: none !important;
+}
